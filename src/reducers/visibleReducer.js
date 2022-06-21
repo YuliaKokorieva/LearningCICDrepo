@@ -6,10 +6,10 @@ const visibleSlice = createSlice({
   name: 'visible',
   initialState,
   reducers: {
-    setVisible(state, action) {
+    setVisible() {
       return true
     },
-    setInvisible(state, action) {
+    setInvisible() {
       return false
     }
   }

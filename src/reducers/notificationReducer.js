@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { setVisible, setInvisible} from '../reducers/visibleReducer'
 
-const notification = ""
+const notification = ''
 const initialState = notification
 
 const notificationSlice = createSlice({

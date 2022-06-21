@@ -1,3 +1,4 @@
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import AnecdoteForm from './components/AnecdoteForm'
@@ -11,7 +12,7 @@ const App = () => {
   const dispatch = useDispatch()
   
   useEffect(()=> {
-   dispatch(initializeAnecdotes())
+    dispatch(initializeAnecdotes())
   }, [dispatch])
 
   const visible = useSelector(state=>state.visible)
