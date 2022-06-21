@@ -37,5 +37,18 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "cicd-anecdotes" 
           heroku_email: "bgp002@myy.haaga-helia.fi"
-      
+      - name: build success
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success() && github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
+        with:
+          severity: info
+          details: New version deployed successfully!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: build failure
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with: 
+          severity: error
+          details: Build failed 
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}      
         
