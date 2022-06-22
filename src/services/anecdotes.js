@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://cicd-anecdotes.herokuapp.com/anecdotes'
+const baseUrl = 'db/anecdotes'
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
