@@ -20,7 +20,7 @@ const App = () => {
   return (
     <div>
       <h2>Anecdotes</h2>
-      <p>v.1</p>
+      <p>v.3: waiting for teachers approval</p>
       {visible
         ?<Notification/>
         : null}
