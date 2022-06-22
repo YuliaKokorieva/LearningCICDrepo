@@ -37,6 +37,9 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "cicd-anecdotes" 
           heroku_email: "bgp002@myy.haaga-helia.fi"
+          healthcheck: "https://cicd-anecdotes.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true          
       - name: build success
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: success() && github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
