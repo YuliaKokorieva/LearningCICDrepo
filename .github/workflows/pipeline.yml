@@ -18,18 +18,18 @@ jobs:
           node-version: '16'
       - name: npm install
         run: npm install
-#       - name: lint
-#         run: npm run lint
+      - name: lint
+        run: npm run lint
       - name: build
         run: npm run build
       # - name: run BE
       #   run: npm run server &
-#       - name: e2e tests
-#         uses: cypress-io/github-action@v2
-#         with:
-#           command: npm run test:e2e
-#           start: npm start
-#           wait-on: http://localhost:3000
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+          start: npm run start-prod
+          wait-on: http://localhost:5000
       - name: deployment
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         if: ${{ github.event_name == 'push' }}
@@ -37,9 +37,9 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "cicd-anecdotes" 
           heroku_email: "bgp002@myy.haaga-helia.fi"
-#           healthcheck: "https://cicd-anecdotes.herokuapp.com/health"
-#           checkstring: "ok"
-#           rollbackonhealthcheckfailed: true          
+          healthcheck: "https://cicd-anecdotes.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true          
       - name: build success
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: success() && github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
