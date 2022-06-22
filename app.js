@@ -6,7 +6,7 @@ const express = require('express')
 
 const PORT = process.env.PORT || 5000
 
-app.use(middlewares, router)
+app.use('/api', middlewares, router)
 
 app.get('/health', (req, res) => {
   res.send('ok')
